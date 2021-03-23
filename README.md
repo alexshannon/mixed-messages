@@ -1,4 +1,4 @@
-#Mixed Messages
+# Wacky DnD Character Generator
 ## Table of contents
 * [General info](#general-info)
 * [Technologies](#technologies)
