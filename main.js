@@ -35,12 +35,12 @@ main();
 const charGen = (name, role, type, mood, stats, quirk, race) => {
     return{
     Character_Name: name,
+    Character_Race: race,
     Character_Role: role,
     Character_Class: type,
     Character_Mood: mood,
-    Character_Stats: stats,
     Character_Quirk: quirk,
-    Character_Race: race,
+    Character_Stats: stats,
     } 
 }
 
@@ -65,20 +65,19 @@ function generateType(role){
     const meleeArray = ['Barbarian', 'Cleric', 'Fighter', 'Monk', 'Paladin', 'Rogue'];
     const rangedArray = ['Bard', 'Ranger'];
     //Randomly selects the class of the character based on role
-    let classRole = 0;
+    let i = 0;
     if(role === 'caster'){
-       classRole = Math.floor(Math.random()*casterArray.length)
-       return casterArray[classRole]
+       i = Math.floor(Math.random()*casterArray.length)
+       return casterArray[i]
     }
     else if(role === 'melee'){
-        classRole = Math.floor(Math.random()*meleeArray.length)
-        return meleeArray[classRole]
+        i = Math.floor(Math.random()*meleeArray.length)
+        return meleeArray[i]
      }
      else if(role === 'ranged'){
-        classRole = Math.floor(Math.random()*rangedArray.length)
-        return rangedArray[classRole]
+        i = Math.floor(Math.random()*rangedArray.length)
+        return rangedArray[i]
      }
-
 }
 
 function generateStats(charRole){
@@ -113,29 +112,29 @@ function generateQuirk(charMood, charName, charRole){
     let action = 0;
     let verb = 0;
     let object = 0;
-    //the actual array that will be returned
+    //the actual sentence that will be returned
     let charQuirk = '';
     //all of our super serial generation stuff
-    const seriousAction = ['has sworn', 'has given an oath', ]
-    const seriousVerb = ['to revenge', 'to defend']
-    const seriousObject = ['his brother']
+    const seriousAction = ['has sworn', 'has given an oath', 'searches the countryside', 'seeks']
+    const seriousVerb = ['to avenge the distruction of', 'to defend', 'to find', 'to uncover']
+    const seriousObject = ['their brother', 'the homestead', 'their parents', 'ancient knowledge']
     //for the silly ones among us
-    const sillyAction = ['is obsessed with', 'is afraid of']
-    const sillyVerb = ['stealing', 'giving everyone', 'eating']
-    const sillyObject = ['left socks', 'salad forks', 'the good china', 'half-eaten meals', 'turkey']
+    const sillyAction = ['is obsessed with', 'is afraid of', 'can\'t stop thinking about']
+    const sillyVerb = ['stealing', 'giving everyone', 'eating', 'hiding', 'telling everyone about']
+    const sillyObject = ['left socks', 'salad forks', 'the good china', 'half-eaten meals', 'turkey', 'ducks']
     //determines what serious/silly quirk the character has - needed to have seperate determinations due to the arrays not having the same length
     if(charMood === 'serious'){
         action = Math.floor(Math.random()*seriousAction.length)
         verb = Math.floor(Math.random()*seriousVerb.length)
         object = Math.floor(Math.random()*seriousObject.length)
         
-        charQuirk = `${charName} the ${charRole} ${seriousAction[action]} ${seriousVerb[verb]} ${seriousObject[object]}`
+        charQuirk = `${charName} ${seriousAction[action]} ${seriousVerb[verb]} ${seriousObject[object]}.`
     } else if(charMood === 'silly'){
         action = Math.floor(Math.random()*sillyAction.length)
         verb = Math.floor(Math.random()*sillyVerb.length)
         object = Math.floor(Math.random()*sillyObject.length)
         
-        charQuirk = `${charName} ${sillyAction[action]} ${sillyVerb[verb]} ${sillyObject[object]}`
+        charQuirk = `${charName} ${sillyAction[action]} ${sillyVerb[verb]} ${sillyObject[object]}.`
     }
     return charQuirk;
 }
